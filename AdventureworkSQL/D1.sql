@@ -47,7 +47,7 @@ FROM Sales.SalesOrderHeader
 WHERE TerritoryID IN (1,4,5)
 ORDER BY SalesOrderID;
 
-=> chưa có phần sort by Salesorderid. Bạn thử viết thêm sử dụng kiến thức subquery nhé.
+
 --C2:
 SELECT [SalesOrderID],
        [OrderDate],
