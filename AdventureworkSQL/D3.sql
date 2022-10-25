@@ -76,13 +76,4 @@ INNER JOIN Sales.SalesOrderDetail d
 GROUP BY SalesPersonID, CONCAT(p.FirstName,' ', p.LastName)
 ORDER BY SALES_RANK DESC
 
-
-/*NOTE: +Câu 2 sao mình không join Production.Product (a) với Production.ProductSubcategory (b) using ProductSubcategoryID
-mà phải dùng  a.ProductModelID = b.ProductSubcategoryID anh nhỉ? Với em chạy câu này có đúng yêu cầu không anh, có gì anh
-giải thích đề rồi em viết lại sau ạ.
- + Câu 4 em join mấy bảng trên mà hình như thiếu thông tin nào mà cái total_revenue của em nó khác quá :) */
-
- select distinct ProductID,
-        SUM(LineTotal) OVER (partition by productID) "total_sales", AVG(LineTotal) OVER (partition by productID) "avg_sales"
-from Sales.SalesOrderDetail 
  
