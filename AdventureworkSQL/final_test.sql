@@ -1,4 +1,4 @@
--- 1.1(1đ): Sử dụng dữ liệu từ bảng Purchasing.PurchaseOrderDetail xuất dữ liệu số lượng sản phẩm bị từ chối nhận hàng
+--1 Details of Rejected Orders
 SELECT PurchaseOrderID,
        PurchaseOrderDetailID,
        DueDate,
@@ -12,10 +12,7 @@ SELECT PurchaseOrderID,
 FROM Purchasing.PurchaseOrderDetail
 WHERE RejectedQty > 0
 
---1.2 tổng số lượng đơn hàng, tổng số sản phẩm giao thành công, tổng giá trị mua theo ID nhân viên, sau đó sắp xếp theo 
--- thứ tự giảm dần theo tổng giá trị mua(1đ). Tạo cột ranking thể hiện rank theo id nhân viên theo tổng giá trị mua giảm dần
--- (tổng giá trị mua cao nhất rank là 1, cao thứ 2 rank là 2…) (1đ).
-
+--2 Rank Employees have the highest sales
 SELECT EmployeeID,
        COUNT(DISTINCT PurchaseOrderDetailID) AS num_order,
        SUM(ReceivedQty) AS sum_received_product,
@@ -27,7 +24,7 @@ RIGHT JOIN Purchasing.PurchaseOrderHeader h
 ON d.PurchaseOrderID = h.PurchaseOrderID 
 GROUP BY EmployeeID
 
---1.3(1đ): Dựa vào bảng HumanResources.EmployeeDepartmentHistory xuất ra danh sách những nhân viên từng chuyển bộ phận hoặc nghỉ việc.
+--3 Number of employees change departments or quit job
 SELECT *
 FROM HumanResources.EmployeeDepartmentHistory
 WHERE BusinessEntityID IN (
